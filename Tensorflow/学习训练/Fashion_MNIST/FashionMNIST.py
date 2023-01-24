@@ -1,5 +1,4 @@
 import tensorflow as tf
-from tensorflow import keras
 from tensorflow.keras import datasets, layers, optimizers, Sequential, metrics
 import os
 
@@ -12,10 +11,9 @@ def preprocess(x, y):
     return x, y
 
 
+batch_size = 128
 (x, y), (x_test, y_test) = datasets.fashion_mnist.load_data()
 print(x.shape, y.shape)
-
-batch_size = 128
 
 db = tf.data.Dataset.from_tensor_slices((x, y))
 db = db.map(preprocess).shuffle(10000).batch(batch_size)
